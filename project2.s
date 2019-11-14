@@ -40,6 +40,10 @@ remove:
 numLoop:
  sub $t0, $t0, 48         #subtract 48 from $t0 value to convert from hexadecimal to decimal value
  bge $t1, 1, multFirst    #if it's the first character jump to multFirst
+ bge $t1, 2, multSecond    #if it's the first character jump to multFirst
+ bge $t1, 3, multThird    #if it's the first character jump to multFirst
+ bge $t1, 4, multFourth    #if it's the first character jump to multFirst
+
 
  Sum:
  add $s0, $s0, $t0        #Compute the sum
