@@ -52,33 +52,33 @@ numLoop:
 
 
  Sum:
- add $s0, $s0, $t0        #Compute the sum
+ add $s0, $s0, $t4        #Compute the sum
  addi $t1,$t1,1           #increment loop
  addi $s2,$s2,1           #increment through string
  j chooseLoop             #return to top of loop
 
 multFirst:
   mult $t0, $t6     #multiply character by 1
-  mfhi $t4
-  mflo $t5
+  mflo $t4
+  #mflo $t5
   j Sum
 
 multSecond:
   mult $t0, $t7     #multiply character by 30
-  mfhi $t4
-  mflo $t5
+  mflo $t4
+  #mflo $t5
   j Sum
 
 multThird:
   mult $t0, $t8     #multiply character by 900
-  mfhi $t4
-  mflo $t5
+  mflo $t4
+  #mflo $t5
   j Sum
 
 multFourth:
   mult $t0, $t9     #multiply character by 27000
-  mfhi $t4
-  mflo $t5
+  mflo $t4
+  #mflo $t5
   j Sum
 
 lowerLoop:
