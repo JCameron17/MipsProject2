@@ -4,7 +4,7 @@
 myString: .space 1000
 invalid: .asciiz "Invalid "
 line: .asciiz "\n"
-val1; .word 1     #30^0
+val1: .word 1     #30^0
 val2: .word 30    #30^1
 val3: .word 900   #30^2
 val4: .word 27000 #30^3
@@ -12,7 +12,7 @@ val4: .word 27000 #30^3
 .text
 main:
 
-li $v0, 8           #get user input
+ li $v0, 8           #get user input
  la $a0, myString    #store string
  li $a1, 1001
  syscall
@@ -52,25 +52,25 @@ numLoop:
  j chooseLoop             #return to top of loop
 
 multFirst:
-  mult $s3, $t0, val1     #multiply character by 1
+  mult $t0, val1     #multiply character by 1
   mfhi $t4
   mfhi $t5
   j Sum
 
 multSecond:
-  mult $s3, $t0, val2     #multiply character by 30
+  mult $t0, val2     #multiply character by 30
   mfhi $t4
   mfhi $t5
   j Sum
 
 multThird:
-  mult $s3, $t0, val3     #multiply character by 900
+  mult $t0, val3     #multiply character by 900
   mfhi $t4
   mfhi $t5
   j Sum
 
 multFourth:
-  mult $s3, $t0, val4     #multiply character by 27000
+  mult $t0, val4     #multiply character by 27000
   mfhi $t4
   mfhi $t5
   j Sum
