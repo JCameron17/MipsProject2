@@ -20,12 +20,21 @@ li $v0, 8           #get user input
  move $t1, $zero
 
 chooseLoop:
-     bge $t1, 5, endLoop  #if 11 characters are looped then jump to end loop
+     bge $t1, 5, endLoop  #if 5 characters are looped then jump to end loop
      lb $t0, 0($s2)      #place first char of string into $t0
      ble $t0, 47, outofrangeLoop   #if special character run out of range loop
      ble $t0, 57, numLoop          #if digits 0-9 run numLoop
      ble $t0, 90, upperLoop        #if uppercase letter run upperLoop
      ble $t0, 122, lowerLoop       #if lowercase letter run lowercase loop
+
+removeSpace:
+  slti $t2, $s1, 33
+  bne $t1, $zero, remove
+
+remove:
+  add $t3, $s0, $a0
+  sb $0, 0($t3)
+  syscall
 
 numLoop:
  sub $t0, $t0, 48         #subtract 48 from $t0 value to convert from hexadecimal to decimal value
