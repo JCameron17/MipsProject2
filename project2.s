@@ -42,9 +42,9 @@ chooseLoop:
 numLoop:
  sub $t0, $t0, 48         #subtract 48 from $t0 value to convert from hexadecimal to decimal value
  beq $t1, 1, multFirst    #if it's the first character jump to multFirst
- beq $t1, 2, multSecond   #if it's the first character jump to multFirst
- beq $t1, 3, multThird    #if it's the first character jump to multFirst
- beq $t1, 4, multFourth   #if it's the first character jump to multFirst
+ beq $t1, 2, multSecond   #if it's the second character jump to multFirst
+ beq $t1, 3, multThird    #if it's the third character jump to multFirst
+ beq $t1, 4, multFourth   #if it's the fourth character jump to multFirst
 
 lowerLoop:
   blt $t0, 97, outofrangeLoop     #special characters will be considered out of range
@@ -53,16 +53,14 @@ lowerLoop:
   beq $t1, 2, multSecond   #if it's the first character jump to multFirst
   beq $t1, 3, multThird    #if it's the first character jump to multFirst
   beq $t1, 4, multFourth   #if it's the first character jump to multFirst
-  
+
  upperLoop:
    blt $t0, 65, outofrangeLoop     #special characters will be considered out of range
    bgt $t0, 85, outofrangeLoop     #U is the last char accepted in the alphabet
-   sub $t0, $t0, 55                #subtract 55 from $t0 value to convert from hex to decimal
-   add $s0, $s0, $t0               #Compute the sum
-   addi $t1,$t1,1                  #increment loop
-   addi $s2,$s2,1                  #increment through string
-   j chooseLoop
-
+   beq $t1, 1, multFirst    #if it's the first character jump to multFirst
+   beq $t1, 2, multSecond   #if it's the second character jump to multFirst
+   beq $t1, 3, multThird    #if it's the third character jump to multFirst
+   beq $t1, 4, multFourth   #if it's the fourth character jump to multFirst
 
 
  outofrangeLoop:
@@ -70,6 +68,7 @@ lowerLoop:
  add $s0, $s0, $s3                #compute the sum
  addi $t1, $t1, 1                  #increment loop
  addi $s2, $s2, 1                  #increment through string
+
     multFirst:
       mult $t0, $t6     #multiply character by 1
       mflo $t4
