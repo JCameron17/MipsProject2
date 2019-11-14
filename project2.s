@@ -23,29 +23,28 @@ main:
  li $a1, 5
  syscall
 
+#move input to prepare for conversions
  move $s2, $a0
- move $t1, $zero
+ li $s0, 0        #beginning of string
+ li $s1, 0        #end of string
+
+
 
 chooseLoop:
-     bge $t1, 5, endLoop  #if 5 characters are looped then jump to end loop
+     bge $t1, 5, endLoop  #if 5 characters are looped then jump to end loop                                                                 
      lb $t0, 0($s2)      #place first char of string into $t0
      ble $t0, 47, outofrangeLoop   #if special character run out of range loop
-     #ble $t0, 57, numLoop          #if digits 0-9 run numLoop
-     #sub $t0, $t0, 48         #subtract 48 from $t0 value to convert from hexadecimal to decimal value
-     bge $t1, 1, multFirst    #if it's the first character jump to multFirst
-     bge $t1, 2, multSecond    #if it's the first character jump to multFirst
-     bge $t1, 3, multThird    #if it's the first character jump to multFirst
-     bge $t1, 4, multFourth    #if it's the first character jump to multFirst
+     ble $t0, 57, numLoop          #if digits 0-9 run numLoop
      ble $t0, 90, upperLoop        #if uppercase letter run upperLoop
      ble $t0, 122, lowerLoop       #if lowercase letter run lowercase loop
 
 
-#numLoop:
- #sub $t0, $t0, 48         #subtract 48 from $t0 value to convert from hexadecimal to decimal value
- #bge $t1, 1, multFirst    #if it's the first character jump to multFirst
- #bge $t1, 2, multSecond    #if it's the first character jump to multFirst
- #bge $t1, 3, multThird    #if it's the first character jump to multFirst
- #bge $t1, 4, multFourth    #if it's the first character jump to multFirst
+numLoop:
+ sub $t0, $t0, 48         #subtract 48 from $t0 value to convert from hexadecimal to decimal value
+ beq $t1, 1, multFirst    #if it's the first character jump to multFirst
+ beq $t1, 2, multSecond   #if it's the first character jump to multFirst
+ beq $t1, 3, multThird    #if it's the first character jump to multFirst
+ beq $t1, 4, multFourth   #if it's the first character jump to multFirst
 
     multFirst:
       sub $t0, $t0, 48         #subtract 48 from $t0 value to convert from hexadecimal to decimal value
@@ -66,11 +65,11 @@ chooseLoop:
       #mflo $t5
       j Sum
 
-multFourth:
-  mult $t0, $t9     #multiply character by 27000
-  mflo $t4
-  #mflo $t5
-  j Sum
+    multFourth:
+      mult $t0, $t9     #multiply character by 27000
+      mflo $t4
+      #mflo $t5
+      j Sum
 
   Sum:
   add $s0, $s0, $t4        #Compute the sum
@@ -116,6 +115,10 @@ endLoop:
   syscall
 
   li $v0, 10           #end program
+  syscall
+
+endAll:
+  li $v0, 10
   syscall
 
   removeSpace:
