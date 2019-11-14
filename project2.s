@@ -12,6 +12,12 @@ val4: .word 27000 #30^3
 .text
 main:
 
+ addi $t6, $zero, 1
+ addi $t7, $zero, 30
+ addi $t8, $zero, 900
+ addi $t9, $zero, 27000
+
+
  li $v0, 8           #get user input
  la $a0, myString    #store string
  li $a1, 1001
