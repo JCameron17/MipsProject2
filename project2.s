@@ -58,25 +58,25 @@ numLoop:
  j chooseLoop             #return to top of loop
 
 multFirst:
-  mult $t0, val1     #multiply character by 1
+  mult $t0, $t6     #multiply character by 1
   mfhi $t4
   mfhi $t5
   j Sum
 
 multSecond:
-  mult $t0, val2     #multiply character by 30
+  mult $t0, $t7     #multiply character by 30
   mfhi $t4
   mfhi $t5
   j Sum
 
 multThird:
-  mult $t0, val3     #multiply character by 900
+  mult $t0, $t8     #multiply character by 900
   mfhi $t4
   mfhi $t5
   j Sum
 
 multFourth:
-  mult $t0, val4     #multiply character by 27000
+  mult $t0, $t9     #multiply character by 27000
   mfhi $t4
   mfhi $t5
   j Sum
