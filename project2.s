@@ -1,7 +1,8 @@
 .data
 #variable for user input
 #based on ID num @02839468
-myString: .space 32
+myString: .space 1000
+invalid: .asciiz "Invalid "
 line: .asciiz "\n"
 
 .text
@@ -9,14 +10,14 @@ main:
 
     li $v0, 8           #get user input
     la $a0, myString    #store string
-    li $a1, 11
+    li $a1, 1001
     syscall
 
     move $s2, $a0
 
-    #lb $t0, 0($s2)      #place first char of string into $t0
-    #li $v0, 4           #print chars iteratively
-    #syscall
+    lb $t0, 0($s2)      #place first char of string into $t0
+    li $v0, 4           #print chars iteratively
+    syscall
 
 
     chooseLoop:
