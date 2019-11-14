@@ -1,7 +1,7 @@
 .data
 #variable for user input
 #based on ID num @02839468
-myString: .space 1000
+myString: .space 32
 invalid: .asciiz "Invalid "
 line: .asciiz "\n"
 val1: .word 1     #30^0
@@ -20,7 +20,7 @@ main:
 
  li $v0, 8           #get user input
  la $a0, myString    #store string
- li $a1, 1001
+ li $a1, 5
  syscall
 
  move $s2, $a0
@@ -60,25 +60,25 @@ numLoop:
 multFirst:
   mult $t0, $t6     #multiply character by 1
   mfhi $t4
-  mfhi $t5
+  mflo $t5
   j Sum
 
 multSecond:
   mult $t0, $t7     #multiply character by 30
   mfhi $t4
-  mfhi $t5
+  mflo $t5
   j Sum
 
 multThird:
   mult $t0, $t8     #multiply character by 900
   mfhi $t4
-  mfhi $t5
+  mflo $t5
   j Sum
 
 multFourth:
   mult $t0, $t9     #multiply character by 27000
   mfhi $t4
-  mfhi $t5
+  mflo $t5
   j Sum
 
 lowerLoop:
