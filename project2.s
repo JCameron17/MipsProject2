@@ -54,6 +54,12 @@ multSecond:
   mfhi $t4
   mfhi $t5
 
+multThird:
+  mult $s3, $t0, val3
+  mfhi $t4
+  mfhi $t5
+
+
 
 lowerLoop:
  blt $t0, 97, outofrangeLoop     #special characters will be considered out of range
