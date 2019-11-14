@@ -39,28 +39,32 @@ remove:
 
 numLoop:
  sub $t0, $t0, 48         #subtract 48 from $t0 value to convert from hexadecimal to decimal value
+ bge $t1, 1, multFirst    #if it's the first character jump to multFirst
+
+ Sum:
  add $s0, $s0, $t0        #Compute the sum
  addi $t1,$t1,1           #increment loop
  addi $s2,$s2,1           #increment through string
- j chooseLoop               #return to top of loop
+ j chooseLoop             #return to top of loop
 
 multFirst:
-  mult $s3, $t0, val1
+  mult $s3, $t0, val1     #multiply character by 1
   mfhi $t4
   mfhi $t5
+  j Sum
 
 multSecond:
-  mult $s3, $t0, val2
+  mult $s3, $t0, val2     #multiply character by 30
   mfhi $t4
   mfhi $t5
 
 multThird:
-  mult $s3, $t0, val3
+  mult $s3, $t0, val3     #multiply character by 900
   mfhi $t4
   mfhi $t5
 
 multFourth:
-  mult $s3, $t0, val4
+  mult $s3, $t0, val4     #multiply character by 27000
   mfhi $t4
   mfhi $t5
 
