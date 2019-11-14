@@ -4,9 +4,10 @@
 myString: .space 1000
 invalid: .asciiz "Invalid "
 line: .asciiz "\n"
-val2: .word 30
-val3: .word 90
-val4: .word 27000
+val1; .word 1     #30^0
+val2: .word 30    #30^1
+val3: .word 900   #30^2
+val4: .word 27000 #30^3
 
 .text
 main:
@@ -42,6 +43,11 @@ numLoop:
  addi $t1,$t1,1           #increment loop
  addi $s2,$s2,1           #increment through string
  j chooseLoop               #return to top of loop
+
+multFirst:
+  mult $s3, $t0, val1
+  mfhi $t4
+  mfhi $t5
 
 
 lowerLoop:
