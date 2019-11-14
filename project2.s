@@ -50,9 +50,9 @@ lowerLoop:
   blt $t0, 97, outofrangeLoop     #special characters will be considered out of range
   bgt $t0, 117, outofrangeLoop    #u is the last char accepted in the alphabet
   beq $t1, 1, multFirst    #if it's the first character jump to multFirst
-  beq $t1, 2, multSecond   #if it's the first character jump to multFirst
-  beq $t1, 3, multThird    #if it's the first character jump to multFirst
-  beq $t1, 4, multFourth   #if it's the first character jump to multFirst
+  beq $t1, 2, multSecond   #if it's the second character jump to multFirst
+  beq $t1, 3, multThird    #if it's the third character jump to multFirst
+  beq $t1, 4, multFourth   #if it's the fourth character jump to multFirst
 
  upperLoop:
    blt $t0, 65, outofrangeLoop     #special characters will be considered out of range
@@ -78,19 +78,16 @@ lowerLoop:
     multSecond:
       mult $t0, $t7     #multiply character by 30
       mflo $t4
-      #mflo $t5
       j Sum
 
     multThird:
       mult $t0, $t8     #multiply character by 900
       mflo $t4
-      #mflo $t5
       j Sum
 
     multFourth:
       mult $t0, $t9     #multiply character by 27000
       mflo $t4
-      #mflo $t5
       j Sum
 
     Sum:
