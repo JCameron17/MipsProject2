@@ -61,16 +61,19 @@ multSecond:
   mult $s3, $t0, val2     #multiply character by 30
   mfhi $t4
   mfhi $t5
+  j Sum
 
 multThird:
   mult $s3, $t0, val3     #multiply character by 900
   mfhi $t4
   mfhi $t5
+  j Sum
 
 multFourth:
   mult $s3, $t0, val4     #multiply character by 27000
   mfhi $t4
   mfhi $t5
+  j Sum
 
 lowerLoop:
  blt $t0, 97, outofrangeLoop     #special characters will be considered out of range
