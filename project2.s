@@ -2,7 +2,7 @@
 #variable for user input
 #based on ID num @02839468
 myString: .space 1001
-invalid: .asciiz "Invalid "
+invalid: .asciiz "Invalid input"
 line: .asciiz "\n"
 val1: .word 1     #30^0
 val2: .word 30    #30^1
@@ -39,10 +39,17 @@ fixIn2:
   li $s4, -1
   la $s2, myString
   add $s1, ($s2)
-  bge $s5, 5, printInv
+  bge $s5, 5, printInv  #if more than 4 char print invalid
 
 
 printInv:
+  li $v0, 4
+  la $a0, line
+  syscall
+
+  li $v0, 4
+  la $a0, invalid
+
 
 chooseLoop:
      bge $t1, 5, endLoop  #if 5 characters are looped then jump to end loop
