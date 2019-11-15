@@ -1,7 +1,7 @@
 .data
 #variable for user input
 #based on ID num @02839468
-myString: .space 32
+myString: .space 1001
 invalid: .asciiz "Invalid "
 line: .asciiz "\n"
 val1: .word 1     #30^0
@@ -13,20 +13,25 @@ val4: .word 27000 #30^3
 main:
 
  addi $t6, $zero, 1
- addi $t7, $zero, 31
- addi $t8, $zero, 961
- addi $t9, $zero, 29791
+ addi $t7, $zero, 30
+ addi $t8, $zero, 900
+ addi $t9, $zero, 29000
 
 
  li $v0, 8           #get user input
  la $a0, myString    #store string
- li $a1, 5
+ li $a1, 1001
  syscall
 
 #move input to prepare for conversions
- move $s2, $a0
- li $s0, 0        #beginning of string
- li $s1, 0        #end of string
+fixInput:
+  la $s2, myString    #store input in $s2
+ 	add $s2, $s2, $t1   #increment
+ 	lb $s1, ($s2)       #load character
+ 	
+
+
+
 
 
 
