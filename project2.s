@@ -28,11 +28,11 @@ fixInput:
   la $s2, myString    #store input in $s2
  	add $s2, $s2, $t1   #increment
  	lb $s1, ($s2)       #load character
- 	
-
-
-
-
+  beq $s1, 0, endLoop
+ 	beq $s1, 9, remove    #remove tab
+ 	beq $s1, 32, remove   #remove space
+ 	move $s3, $t1
+ 	j chooseLoop
 
 
 chooseLoop:
@@ -119,11 +119,7 @@ endAll:
   li $v0, 10
   syscall
 
-  removeSpace:
-    slti $t2, $s1, 33
-    bne $t1, $zero, remove
 
   remove:
-    add $t3, $s0, $a0
-    sb $0, 0($t3)
-    syscall
+    addi $t1, $t1, 1
+    j fixInput
