@@ -13,9 +13,9 @@ val4: .word 27000 #30^3
 main:
 
  addi $t6, $zero, 1
- addi $t7, $zero, 30
- addi $t8, $zero, 900
- addi $t9, $zero, 27000
+ addi $t7, $zero, 31
+ addi $t8, $zero, 961
+ addi $t9, $zero, 29791
 
 
  li $v0, 8           #get user input
