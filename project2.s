@@ -35,6 +35,15 @@ fixInput:
  	j chooseLoop
 
 
+fixIn2:
+  li $s4, -1
+  la $s2, myString
+  add $s1, ($s2)
+  bge $s5, 5, printInv
+
+
+printInv:
+
 chooseLoop:
      bge $t1, 5, endLoop  #if 5 characters are looped then jump to end loop
      lb $t0, 0($s2)      #place first char of string into $t0
